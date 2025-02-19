@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Intro.css';
-
 
 function Home() {
   const [file, setFile] = useState(null);
+  const [showCookieBanner, setShowCookieBanner] = useState(true);
+  const navigate = useNavigate();
 
   const handleFileUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+    }
+  };
+
+  const handleGeneratePreset = () => {
+    if (file) {
+      console.log('Generating preset for:', file.name);
+    } else {
+      alert('Please upload a file first!');
     }
   };
 
@@ -27,8 +37,8 @@ function Home() {
           </ul>
         </div>
         <div className="nav-right">
-          <button className="demo-btn">Request Demo</button>
-          <button className="dashboard-btn">Dashboard</button>
+          <button className="demo-btn" onClick={() => navigate('/demo')}>Request Demo</button>
+          <button className="dashboard-btn" onClick={() => navigate('/dashboard')}>Dashboard</button>
         </div>
       </header>
     
@@ -36,40 +46,30 @@ function Home() {
       <section className="hero-section">
         <div className="hero-content">
           <h1>Industry Level Vocal Chain Generator</h1>
-          <h2>Get multi-channel vocal chains instantly !</h2>
+          <h2>Get multi-channel vocal chains instantly!</h2>
           <p>
-          We analyze your beat’s style and create a custom vocal chain preset tailored to your track. Upload your audio, and we’ll handle the rest.
+            We analyze your beat’s style and create a custom vocal chain preset tailored to your track. Upload your audio, and we’ll handle the rest.
           </p>
-          <button className="go-dashboard">Go to Dashboard</button>
+          <button className="go-dashboard" onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
         </div>
         <div className="hero-visual">
-    <img 
-      src="/plugins.jpeg" 
-      alt="Vocal chain visualization" 
-      className="mixer-visual"
-    />
-  </div>
+          <img src="/plugins.jpeg" alt="Vocal chain visualization" className="mixer-visual" />
+        </div>
         {/* FLOATING CARD ON THE RIGHT */}
         <div className="card">
           <h3>Upload your beat</h3>
           <p>We’ll analyze its genre, BPM, and mood to generate the perfect vocal chain for your project.</p>
           <div className="upload-box">
-            <input
-              type="file"
-              accept="audio/*"
-              id="file-upload"
-              onChange={handleFileUpload}
-              style={{ display: 'none' }}
-            />
+            <input type="file" accept="audio/*" id="file-upload" onChange={handleFileUpload} style={{ display: 'none' }} />
             <label htmlFor="file-upload" className="drop-area">
               {file ? `Uploaded: ${file.name}` : 'Click or drop your file here'}
             </label>
           </div>
-          <button className="generate-btn">Generate Preset</button>
+          <button className="generate-btn" onClick={handleGeneratePreset}>Generate Preset</button>
         </div>
       </section>
 
-      {/* NEW TODAY & BRAND LOGOS */}
+      {/* BRAND LOGOS */}
       <section className="brands-section">
         <div className="brands-content">
           <div className="logos">
@@ -90,10 +90,12 @@ function Home() {
       </footer>
 
       {/* COOKIE BANNER */}
-      <div className="cookie-banner">
-        <p>We use cookies. By using our site, you accept our cookie policy.</p>
-        <button action="submit" className="cookie-accept">Okay</button>
-      </div>
+      {showCookieBanner && (
+        <div className="cookie-banner">
+          <p>We use cookies. By using our site, you accept our cookie policy.</p>
+          <button className="cookie-accept" onClick={() => setShowCookieBanner(false)}>Okay</button>
+        </div>
+      )}
     </div>
   );
 }
