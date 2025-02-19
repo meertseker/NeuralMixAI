@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 import './Dashboard.css';
 
 const Dashboard = () => {
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!isSignedIn) {
+      navigate("/login"); // Redirect to login page
+    }
+  }, [isSignedIn, navigate]);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState('');
-  const [showResults, setShowResults] = useState(false); // State to toggle results section
+  const [showResults, setShowResults] = useState(false);
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -18,7 +29,6 @@ const Dashboard = () => {
   };
 
   const handleAnalyze = () => {
-    // Simulate API call or processing
     setShowResults(true);
   };
 
@@ -29,7 +39,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Navbar */}
       <nav className="navbar">
         <div className="nav-left">
           <span className="logo-text">NeuralMix AI</span>
@@ -44,9 +53,7 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="dashboard-main">
-        {/* Upload Section */}
         <div className="upload-section">
           <div className="card">
             <h3>Generate New Vocal Chain</h3>
@@ -74,40 +81,18 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Vocal Chain Preview Section */}
         {showResults && (
           <div className="vocal-chain-preview">
             <h3>Vocal Chain Preview</h3>
             <div className="plugin-grid">
-              <div className="plugin-card">
-                <h4>CLA-76</h4>
-                <p>Attack: 4, Release: 5, Ratio: 8:1</p>
-              </div>
-              <div className="plugin-card">
-                <h4>SSL E-Channel</h4>
-                <p>High-Pass Filter: 90 Hz, Low Shelf: +3 dB</p>
-              </div>
-              <div className="plugin-card">
-                <h4>RVerb</h4>
-                <p>Reverb Type: Non-Lin, Decay: 2.2s</p>
-              </div>
-              <div className="plugin-card">
-                <h4>H-Delay</h4>
-                <p>Delay Time: 1/8, Feedback: 25%</p>
-              </div>
-              <div className="plugin-card">
-                <h4>H-Delay</h4>
-                <p>Delay Time: 1/8, Feedback: 25%</p>
-              </div>
-              <div className="plugin-card">
-                <h4>H-Delay</h4>
-                <p>Delay Time: 1/8, Feedback: 25%</p>
-              </div>
+              <div className="plugin-card"><h4>CLA-76</h4><p>Attack: 4, Release: 5, Ratio: 8:1</p></div>
+              <div className="plugin-card"><h4>SSL E-Channel</h4><p>High-Pass Filter: 90 Hz, Low Shelf: +3 dB</p></div>
+              <div className="plugin-card"><h4>RVerb</h4><p>Reverb Type: Non-Lin, Decay: 2.2s</p></div>
+              <div className="plugin-card"><h4>H-Delay</h4><p>Delay Time: 1/8, Feedback: 25%</p></div>
             </div>
           </div>
         )}
 
-        {/* Preset History */}
         <div className="history-section">
           <h3>Recent Presets</h3>
           <div className="preset-grid">
