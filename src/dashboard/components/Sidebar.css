@@ -10,6 +10,7 @@
   margin-top: -23px;
   display: flex; /* Set sidebar to flexbox */
   flex-direction: column; /* Stack elements vertically */
+
 }
 
 .sidebar-content {
@@ -35,7 +36,7 @@
 .user_details {
   flex-direction: row;
   margin-top: 0px;
-  border-radius: 50%;
+
 }
 
 .profile h3 {
@@ -63,14 +64,6 @@
   gap: 7px;
 }
 
-btn {
-  width: auto;
-  height: 20px;
-  text-align: start;
-  background-color: #202123;
-  color: #E0E0E0;
-  font-size: 15px;
-}
 
 .settings {
   display: flex;
@@ -78,7 +71,7 @@ btn {
   align-items: center; 
   background-color: #38393c;
   height: 40px;
-  width: 285px;
+  width: 95%;
   border-radius: 10px;
   margin-left: 7px;
   margin-bottom: 7px;
