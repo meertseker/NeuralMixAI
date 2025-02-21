@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 
-const clerkKey = "pk_test_aHVtYW5lLWJlYWdsZS0xMi5jbGVyay5hY2NvdW50cy5kZXYk"
+const clerkKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
 
 function App() {
   return (
