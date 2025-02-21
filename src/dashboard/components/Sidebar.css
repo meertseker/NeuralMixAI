@@ -10,12 +10,16 @@
   margin-top: -23px;
   display: flex; /* Set sidebar to flexbox */
   flex-direction: column; /* Stack elements vertically */
+  padding-top: 10px;
+  position: relative;
+  overflow: visible;
 
 }
 
 .sidebar-content {
   flex-grow: 1; /* Allow the content to grow and take available space */
   padding-left: 27px;
+  transform: scale(1.2);
 }
 
 .profile {
@@ -24,13 +28,15 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 70px;
 }
 
 .profile img {
   width: 53px;
   height: 53px;
   border-radius: 50%;
+  position: relative;
+  z-index: 2
 }
 
 .user_details {
@@ -71,14 +77,13 @@
   align-items: center; 
   background-color: #38393c;
   height: 40px;
-  width: 95%;
+  width: 99%;
   border-radius: 10px;
-  margin-left: 7px;
-  margin-bottom: 7px;
+  margin-bottom: -45px;
 }
 
 .settings button{
   color: #f1f1f1;
   background-color: #38393c;
-  
+  font-size: 1.1rem;
 }

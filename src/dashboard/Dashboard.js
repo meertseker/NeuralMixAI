@@ -6,7 +6,9 @@ import './Dashboard.css';
 const Dashboard = () => {
   return (
     <div className='dashboard'>
+      <div className="sidebar">
       <Sidebar />
+      </div>
       <div className="dashboard-main">
         <div className="dashboard-card">
           <h2>Create a Mix Vocal Chain</h2>
