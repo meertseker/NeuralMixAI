@@ -47,27 +47,32 @@
 
 .profile h3 {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   flex-direction: column;
+  color: rgb(32, 199, 32);
 }
 
 .profile h2 {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .menu, .vocal-chains {
-  padding-top: 20px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   font-size: 12px;
   color: #797d85;
 }
 
+.menu{
+  padding-top: 20px;
+}
+
 .menu-button, .chain-button {
   padding-top: 3px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 11px;
 }
 
 
@@ -86,4 +91,40 @@
   color: #f1f1f1;
   background-color: #38393c;
   font-size: 1.1rem;
+}
+
+.settings button:hover {
+  background-color: #4f5054; /* Slightly lighter color on hover */
+}
+
+btn{
+  display: flex;
+  align-items: center; /* Vertically centers the text */
+  background-color: #202123;
+  width: 90%;
+  height: 35px;
+  outline: px solid rgb(32, 6, 6);
+}
+
+.icons{
+  width: 30px;
+  height: 30px;
+}
+
+.chain-icons{
+  width: 20px;
+  height: 20px;
+}
+
+
+.menu-button btn{
+  gap: 10px;
+}
+
+.chain-button btn{
+  gap: 10px;
+}
+
+.add{
+  color: #828799;
 }

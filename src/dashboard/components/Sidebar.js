@@ -1,6 +1,8 @@
 import React from 'react';
 import './Sidebar.css'; // Import the CSS file
 
+
+
 const Sidebar = () => {
   const userName = "Mert Seker";
   const userSubscription = 1;
@@ -16,21 +18,22 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="menu">
-        <span>Find me ideas</span>
+        <span>Menu</span>
       </div>
       <div className="menu-button">
-        <btn>Search</btn>
-        <btn>Billing</btn>
+        <btn><img src="/search.png" alt="" className='icons'/>Search</btn>
+        <btn><img src="/card.png" alt="" className='icons'/>Billing</btn>
       </div>
       
       <div className="vocal-chains">
         <span>Vocal Chains</span>
         </div>
         <div className="chain-button">
-        <btn>High Boost Mix</btn>
-        <btn>Mid Boost Mix</btn>
-        <btn>High-Low Boost Mix</btn>
-        <btn>Low Boost Mix</btn>
+        <btn><img src="/triangle.png" alt="" className='chain-icons'/>High Boost Mix</btn>
+        <btn><img src="/circle.png" alt="" className='chain-icons'/>Mid Boost Mix</btn>
+        <btn><img src="/square.png" alt="" className='chain-icons'/>High-Low Boost Mix</btn>
+        <btn><img src="/circle.png" alt="" className='chain-icons'/>Low Boost Mix</btn>
+        <btn className = "add"><img src="/add.png" alt="" className='chain-icons'/>Add new vocal chain</btn>
         </div>
       </div>
       <div className="settings">
