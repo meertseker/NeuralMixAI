@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Dashboard from "./dashboard/Dashboard";
 import Home from "./intro/Intro";
 import Register from "./components/Register";
@@ -11,7 +11,7 @@ const clerkKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
 function App() {
   return (
     <ClerkProvider publishableKey={clerkKey}>
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -20,7 +20,7 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
     </ClerkProvider>
   );
 }

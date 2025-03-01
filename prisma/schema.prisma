@@ -45,7 +45,6 @@ model Beat {
   id         Int           @id @default(autoincrement())
   userId     Int
   beatData   String
-  properties BeatProperties?
 }
 
 model BeatProperties {

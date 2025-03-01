@@ -1,0 +1,98 @@
+.main-dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-settings-component {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-settings-component h1 {
+    color: #e0e0e0;
+    margin-top: 20px;
+  }
+  
+  .optional {
+    font-size: 15px;
+    color: #e0e0e09c;
+  }
+  
+  .content-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .dashboard-settings-component img {
+    width: 700px;
+    height: 400px; /* Set a fixed height */
+    object-fit: cover; /* Prevent image stretching */
+  }
+  
+  .settings-section {
+    background-color: #1c1c1c;
+    padding: 15px;
+    border-radius: 8px;
+    width: 700px;
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    max-height: 400px;
+  }
+
+  /* Custom scrollbar for .settings-section */
+.settings-section::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+  }
+  
+  /* Style the thumb (the part of the scrollbar that moves) */
+  .settings-section::-webkit-scrollbar-thumb {
+    background-color: black; /* Black color for the thumb */
+    border-radius: 50%; /* Make it round like a dot */
+    width: 8px;  /* Thumb width */
+    height: 8px; /* Thumb height */
+  }
+  
+  /* For Firefox: */
+  .settings-section {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: rgb(68, 68, 68) transparent; /* Black thumb with transparent track */
+  }
+
+  .settings-section h2 {
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .toggle-btn {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .feelings-list, .effects-list {
+    margin-top: 10px;
+  }
+  
+  .slider-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .feeling-label, .effect-label {
+    width: 100px;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .feelings-container, .effects-container {
+    margin-bottom: 20px;
+  }
