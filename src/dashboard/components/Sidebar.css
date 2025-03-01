@@ -31,7 +31,7 @@
   margin-top: 70px;
 }
 
-.profile img {
+.profileimg  {
   width: 53px;
   height: 53px;
   border-radius: 50%;
@@ -39,9 +39,18 @@
   z-index: 2
 }
 
+.profileimg .clerk-user-button {
+  width: 100%; /* Makes the button fill the container */
+  height: 100%; /* Makes the button fill the container */
+  object-fit: cover; /* Ensures the image inside fits the container */
+}
+
+
+
 .user_details {
   flex-direction: row;
-  margin-top: 0px;
+  justify-content: center;
+  align-items: center;
 
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Slider from "@mui/material/Slider";
+import Slider from "./Slider"
 import "./DashboardSettings.css";
 
 const feelings = [
@@ -43,9 +43,10 @@ const DashboardSettings = () => {
                     <div key={feeling.name} className="slider-row">
                       <span className="feeling-label">{feeling.name}</span>
                       <Slider
-                        aria-label={feeling.name}
-                        defaultValue={0}
-                        color={feeling.color}
+                        color="secondary"
+                        defaultValue={0}  // Default value will be 30, but it will never exceed maxLimit
+                        ariaLabel="slider"
+                        maxLimit={40} // Set the custom max limit to 97
                       />
                     </div>
                   ))}

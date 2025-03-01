@@ -10,13 +10,13 @@
   }
   
   .dashboard-settings-component h1 {
-    color: #e0e0e0;
+    color: #E0E0E0;
     margin-top: 20px;
   }
   
   .optional {
     font-size: 15px;
-    color: #e0e0e09c;
+    color: rgba(224, 224, 224, 0.609)
   }
   
   .content-container {
@@ -62,7 +62,7 @@
   }
 
   .settings-section h2 {
-    color: white;
+    color: #E0E0E0;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -71,7 +71,7 @@
   
   .toggle-btn {
     background-color: transparent;
-    color: #fff;
+    color: #E0E0E0;
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -85,14 +85,18 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    gap: 10px;
+    width: 90%;
+    margin-left: 4%;
   }
   
   .feeling-label, .effect-label {
     width: 100px;
-    color: white;
+    color: #E0E0E0;
     font-size: 14px;
   }
   
   .feelings-container, .effects-container {
     margin-bottom: 20px;
   }
+
