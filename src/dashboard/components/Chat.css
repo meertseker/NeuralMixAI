@@ -3,6 +3,70 @@
     margin-top: 10px;
     background-color: #202123;
     width: 100%;
-    height: 82.6%;
+    height: 75.6%;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+.message{
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 17px;
+    background-color: #202123;
+    border-radius: 15px;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.332);
+    
+}
+
+.message h1{
+    font-size: 1.2rem;
+    color: white;
+}
+
+.message p{
+    font-size: 0.9rem;
+    color: white;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.messagecontent{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    
+}
+
+.message-details{
+    display: flex;
+    flex-direction: column;
+    gap: -4px;
+
+}
+
+.chatinput{
+    margin-top: 10px;
+    background-color: #202123;
+    width: 100%;
+    height: auto;
+    min-height: 59px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+    padding-left: 11px;
+    padding-right: 11px;
+
 }

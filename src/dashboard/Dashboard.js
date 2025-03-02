@@ -10,7 +10,7 @@ import Update from './components/Update.js';
 const Dashboard = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
-  const [page, setPage] = useState("create"); 
+  const [page, setPage] = useState("update"); 
 
   useEffect(() => {
     if (!isSignedIn) {
