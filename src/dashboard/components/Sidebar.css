@@ -81,6 +81,7 @@
   display: flex;
   flex-direction: column;
   gap: 11px;
+  
 }
 
 
@@ -117,11 +118,13 @@ btn{
 .icons{
   width: 30px;
   height: 30px;
+  margin-left: 5px;
 }
 
 .chain-icons{
   width: 20px;
   height: 20px;
+  margin-left: 10px;
 }
 
 
@@ -131,6 +134,20 @@ btn{
 
 .chain-button btn{
   gap: 10px;
+  border-radius: 10px;
+  width: 89%;
+}
+
+.menu-button btn{
+  border-radius: 10px;
+}
+
+.chain-button btn:hover{
+  background-color: #f1f1f116;
+}
+
+.menu-button btn:hover{
+  background-color: #f1f1f116;
 }
 
 .add{
