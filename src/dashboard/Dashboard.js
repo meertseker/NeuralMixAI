@@ -6,6 +6,7 @@ import DashboardSettings from './components/DashboardSettings.js';
 import './Dashboard.css';
 import Create from './components/Create.js';
 import Update from './components/Update.js';
+import Preview from "./components/Preview.js";
 
 const Dashboard = () => {
   const { isSignedIn } = useUser();
@@ -22,6 +23,7 @@ const Dashboard = () => {
     <div className='dashboard'>
       {page === "create" && <Create setPage={setPage} />}
       {page === "update" && <Update setPage= {setPage}/>}
+      {page === "preview" && <Preview setPage= {setPage}/>} 
     </div>
   );
 };
