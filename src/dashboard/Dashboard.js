@@ -10,19 +10,18 @@ import Update from './components/Update.js';
 const Dashboard = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
-  const [page, setPage] = useState("update"); 
+  const [page, setPage] = useState("create"); 
 
   useEffect(() => {
     if (!isSignedIn) {
       navigate('/login');
     }
   }, [isSignedIn, navigate]);
-
+ 
   return (
     <div className='dashboard'>
-
       {page === "create" && <Create setPage={setPage} />}
-      {page === "update" && <Update setPage= {setPage}/>} 
+      {page === "update" && <Update setPage= {setPage}/>}
     </div>
   );
 };

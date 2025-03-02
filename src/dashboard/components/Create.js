@@ -4,10 +4,10 @@ import "./Create.css"
 import Sidebar from "./Sidebar";
 const Create = ({ setPage }) => {
   
-  return (
+  return ( 
     <div className="create">
       <div className="sidebar">
-      <Sidebar />
+      <Sidebar setPage={setPage}/>
       </div>
       <div className="dashboard-main">
         <div className="dashboard-card">

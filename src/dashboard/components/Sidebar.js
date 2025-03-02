@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import './Sidebar.css';
 import { UserButton, useUser } from '@clerk/clerk-react';
 
-const Sidebar = () => {
+const Sidebar = ({ setPage }) => {
   const { user } = useUser(); // Get the user object
+  
+  const handleClick = () => {
+    setPage("update");  // Update the page state in the Dashboard
+    
+  };
+  const handleAddClick = () => {
+    setPage("create");  // Update the page state in the Dashboard
+    
+  };
+
 
   return (
     <div className="sidebar">
@@ -43,11 +53,11 @@ const Sidebar = () => {
         </div>
 
         <div className="chain-button">
-        <btn><img src="/triangle.png" alt="" className='chain-icons'/>High Boost Mix</btn>
-        <btn><img src="/circle.png" alt="" className='chain-icons'/>Mid Boost Mix</btn>
-        <btn><img src="/square.png" alt="" className='chain-icons'/>High-Low Boost Mix</btn>
-        <btn><img src="/circle.png" alt="" className='chain-icons'/>Low Boost Mix</btn>
-        <btn className = "add"><img src="/add.png" alt="" className='chain-icons'/>Add new vocal chain</btn>
+        <btn onClick={handleClick}><img src="/triangle.png" alt="" className='chain-icons'/>High Boost Mix</btn>
+        <btn onClick={handleClick}><img src="/circle.png" alt="" className='chain-icons'/>Mid Boost Mix</btn>
+        <btn onClick={handleClick}><img src="/square.png" alt="" className='chain-icons'/>High-Low Boost Mix</btn>
+        <btn onClick={handleClick}><img src="/circle.png" alt="" className='chain-icons'/>Low Boost Mix</btn>
+        <btn className = "add" onClick={handleAddClick}><img src="/add.png" alt="" className='chain-icons' />Add new vocal chain</btn>
 
         </div>
       </div>
