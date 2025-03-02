@@ -10,7 +10,18 @@ const Sidebar = () => {
       <div className="sidebar-content">
         <div className="profile">
         <div className="profileimg">
-          <UserButton />
+        <UserButton          
+          appearance={{
+          elements: {
+          avatarBox: {
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%'
+
+                    }
+                  }
+        }}
+        />
         </div>
           <div className="user_details">
             <h2>{user ? user.fullName : "Guest"}</h2>

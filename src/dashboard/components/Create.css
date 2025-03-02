@@ -1,0 +1,108 @@
+.create {
+    display: flex;
+    min-height: 100vh;
+    background-color: rgb(18, 18, 18); /* Match dashboard background */
+  }
+
+.dashboard-card{
+    margin-top: 17px;
+    background-color: #202123;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    
+}
+
+.dashboard-card h2{
+    color: #E0E0E0;
+    margin-left: 15px;
+    margin-top: 18px;
+}
+
+.dashboard-card p{
+    color: #7e7e7e;
+    margin-left: 15px;
+}
+
+.dashboard-input{
+    display: flex;
+    margin-top: 10px;
+    background-color: #202123;
+    width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    padding: 0 15px;
+    gap: 10px; 
+}
+
+.dashboard-input img {
+    width: 40px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: 5px;
+    filter: brightness(200%);
+}
+
+.dashboard-text-input {
+    flex-grow: 1;
+    flex: 1;              /* Boş alanı tamamen kaplasın */
+    height: 40px;
+    background-color: #2a2b2d; /* Hafif gri arka plan */
+    border: none;
+    border-radius: 5px;
+    color: #E0E0E0;
+    font-size: 1rem;
+    padding-left: 10px;
+    margin-top: 25px;
+}
+
+.dashboard-text-input:focus {
+    outline: 2px solid #4a90e2; /* Mavi çerçeve */
+    background-color: #333436;
+}
+
+.dashboard-file-input {
+    
+    color: #E0E0E0;
+    font-size: 0.9rem;
+    margin-top: 33px;
+    margin-right: -50px;
+}
+
+.dashboard-settings{
+    margin-top: 10px;
+    background-color: #202123;
+    width: 100%;
+    height: 640px;
+    border-radius: 10px;
+}
+
+.dashboard-generate-button{
+    display: flex;
+    margin-top: 12px;
+    background-color: #222a3d;
+    width: 83.5vw;
+    height: 51px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #E0E0E0;
+}
+
+.dashboard-generate-button p{
+    margin-top: 9px;
+}
+
+@media (max-width: 1024px) {
+    .sidebar{
+        display: none;
+    }
+    .dashboard-main{
+        margin-left: 10px;
+        min-width: 1000px;
+    }
+    .dashboard-generate-button{
+        width: 100vw;
+    }
+}
