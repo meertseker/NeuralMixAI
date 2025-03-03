@@ -6,6 +6,7 @@ const Sidebar = ({ setPage }) => {
   const { user } = useUser(); // Get the user object
   
   const handleClick = () => {
+    console.log("setPage called with update");
     setPage("update");  // Update the page state in the Dashboard
     
   };
