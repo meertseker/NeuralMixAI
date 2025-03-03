@@ -21,10 +21,44 @@ const Preview = () => {
         </div>
 
         <div className="preview-info">
+            <div className="vocal-channel">
+            <h2>Main Vocals</h2>
           <div className="info">1</div>
           <div className="info">2</div>
           <div className="info">3</div>
           <div className="info">4</div>
+          <div className="info">1</div>
+          <div className="info">2</div>
+          <div className="info">3</div>
+          <div className="info">4</div>
+          </div>
+          <div className="vocal-channel">
+          <h2>Back Vocals</h2>
+          <div className="info">1</div>
+          <div className="info">2</div>
+          <div className="info">3</div>
+          <div className="info">4</div>
+          <div className="info">2</div>
+          <div className="info">3</div>
+          </div>
+          <div className="vocal-channel">
+          <h2>Adlibs</h2>
+          <div className="info">1</div>
+          <div className="info">2</div>
+          <div className="info">3</div>
+          <div className="info">4</div>
+          <div className="info">3</div>
+          <div className="info">4</div>
+
+          <div className="info">3</div>
+          <div className="info">4</div>
+
+          <div className="info">3</div>
+          <div className="info">a</div>
+
+
+
+          </div>
 
 
         </div>

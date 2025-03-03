@@ -11,7 +11,7 @@ import Preview from "./components/Preview.js";
 const Dashboard = () => {
   const { isSignedIn } = useUser();
   const navigate = useNavigate();
-  const [page, setPage] = useState("create"); 
+  const [page, setPage] = useState("preview"); 
 
   useEffect(() => {
     if (!isSignedIn) {

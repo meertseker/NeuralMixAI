@@ -1,6 +1,5 @@
 .preview{
     display:flex;
-
 }
 
 
@@ -29,14 +28,38 @@
     width: 80vw;
 }
 
-.preview-info{
+.preview-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     width: 100%;
     margin: auto;
     padding: 20px;
+    max-height: 42%; /* Set a maximum height */
+    overflow-y: auto; /* Allow scrolling */
 }
+
+
+
+  .preview-info::-webkit-scrollbar {
+    width: 8px; /* Width of the vertical scrollbar */
+    height: 8px; /* Height of the horizontal scrollbar */
+  }
+  
+
+  .preview-info::-webkit-scrollbar-thumb {
+    background-color: black; /* Black color for the thumb */
+    border-radius: 50%; /* Make it round like a dot */
+    width: 8px;  /* Thumb width */
+    height: 8px; /* Thumb height */
+  }
+  
+  /* For Firefox: */
+  .preview-info {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: rgb(68, 68, 68) transparent; /* Black thumb with transparent track */
+  }
+
 
 .info{
     background-color: #202123;
@@ -50,4 +73,18 @@
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+}
+
+
+.vocal-channel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.vocal-channel h2{
+    font-size: 2rem;
+    color: #E0E0E0;
+    display: grid;
+
 }
