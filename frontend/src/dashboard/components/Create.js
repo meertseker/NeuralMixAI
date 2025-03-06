@@ -56,54 +56,46 @@ const Create = ({ setPage }) => {
     }
   
     const formData = new FormData();
-    formData.append('userId', user.id); // Add the user ID
-    formData.append('description', description); // Add the description
+    formData.append('userId', user.id);
+    formData.append('description', description);
     if (beatFile) {
-      formData.append('beat', beatFile); // Add the beat file
+      formData.append('beatAudio', beatFile);
     }
     if (audioBlob) {
-      formData.append('recording', audioBlob, 'recording.wav'); // Add the recording
-    }
-  
-    // Log FormData contents for debugging
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
+      formData.append('micAudio', audioBlob, 'recording.wav');
     }
   
     setIsLoading(true);
   
-    //try {
-    //  // Example API call
-    //  const response = await fetch('your-api-endpoint', {
-    //    method: 'POST',
-    //    body: formData,
-    //  });
-  //
-    //  // Log the response status and text
-     // console.log('Response Status:', response.status, response.statusText);
-  //
-    //  if (!response.ok) {
-    //    const errorData = await response.json(); // Parse error response
-     //   console.error('Error Response:', errorData);
-      //  throw new Error(errorData.message || 'Failed to generate vocal chain');
-     // }
+    try {
+      const response = await fetch('http://localhost:5000/save-beat', {
+        method: 'POST',
+        body: formData,
+      });
   
-    //  const data = await response.json();
-    //  console.log('Success:', data);
-   //   alert('Vocal chain generated successfully!');
-   // } catch (error) {
-   //   console.error('Error:', error);
-   //   alert(`An error occurred while generating the vocal chain: ${error.message}`);
-   // } finally {
-   //   setIsLoading(false);
-   // }
+      const responseText = await response.text();
+      console.log('Response Text:', responseText);
+  
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}: ${responseText}`);
+      }
+  
+      const data = JSON.parse(responseText);
+      console.log('Success:', data);
+      alert('Vocal chain generated successfully!');
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`An error occurred while generating the vocal chain: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="create">
       <div className="dashboard-main">
         <div className="dashboard-card">
           <h2>Create a Mix Vocal Chain</h2>
-          <p>Enter either beat or description.</p>
+          <p>Enter either beat or description.</p> 
         </div>
         <div className="dashboard-input">
           <img

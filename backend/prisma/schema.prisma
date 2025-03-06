@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Beat {
+  id          Int      @id @default(autoincrement())
+  userId      String   // Clerk'ten gelen user ID'si
+  description String
+  beatAudio   Bytes
+  micAudio    Bytes
+  properties  BeatProperties?  // Optional relationship
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BeatProperties {
+  id                 Int      @id @default(autoincrement())
+  beatId             Int     @unique  // Ensure that each Beat has only one associated BeatProperties
+  beat               Beat     @relation(fields: [beatId], references: [id])
+  genrePrediction    String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model VocalChain {
+  id               Int      @id @default(autoincrement())
+  userId           String   // Clerk'ten gelen user ID'si
+  vocalChainName   String
+  presets          Preset[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Preset {
+  id             Int      @id @default(autoincrement())
+  vocalChainId   Int
+  vocalChain     VocalChain @relation(fields: [vocalChainId], references: [id])
+  presetName     String
+  plugins        Plugin[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Plugin {
+  id             Int      @id @default(autoincrement())
+  presetId       Int
+  preset         Preset   @relation(fields: [presetId], references: [id])
+  pluginName     String
+  settings       PluginSetting[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model PluginSetting {
+  id                Int      @id @default(autoincrement())
+  pluginId          Int
+  plugin            Plugin   @relation(fields: [pluginId], references: [id])
+  pluginSettingName String
+  pluginSettingValue String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
