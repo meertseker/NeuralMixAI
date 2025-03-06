@@ -7,11 +7,15 @@ const Sidebar = ({ setPage }) => {
   
   const handleClick = () => {
     console.log("setPage called with update");
-    setPage("update");  // Update the page state in the Dashboard
+    setPage("preview");  // Update the page state in the Dashboard
     
   };
   const handleAddClick = () => {
     setPage("create");  // Update the page state in the Dashboard
+    
+  };
+  const handleUpdateClick = () => {
+    setPage("update");  // Update the page state in the Dashboard
     
   };
 
@@ -57,7 +61,7 @@ const Sidebar = ({ setPage }) => {
         <btn onClick={handleClick}><img src="/triangle.png" alt="" className='chain-icons'/>High Boost Mix</btn>
         <btn onClick={handleClick}><img src="/circle.png" alt="" className='chain-icons'/>Mid Boost Mix</btn>
         <btn onClick={handleClick}><img src="/square.png" alt="" className='chain-icons'/>High-Low Boost Mix</btn>
-        <btn onClick={handleClick}><img src="/circle.png" alt="" className='chain-icons'/>Low Boost Mix</btn>
+        <btn onClick={handleClick}><img src="/circle.png" alt="" className='chain-icons'/>Low Boost Mix </btn>
         <btn className = "add" onClick={handleAddClick}><img src="/add.png" alt="" className='chain-icons' />Add new vocal chain</btn>
 
         </div>
