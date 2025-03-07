@@ -90,17 +90,7 @@ const Create = ({ setPage }) => {
       setIsLoading(false);
     }
   };
-  const blobToBase64 = (blob) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result.split(',')[1]; // Remove the data URL prefix
-        resolve(base64String);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
+
   
   
   return (
@@ -109,6 +99,16 @@ const Create = ({ setPage }) => {
         <div className="dashboard-card">
           <h2>Create a Mix Vocal Chain</h2>
           <p>Enter either beat or description.</p> 
+        </div>
+        <div className="dashboard-title-input">
+          <h2>Title of vocal chain</h2>
+          <input
+            type="text"
+            className="dashboard-title-input-input"
+            placeholder="Enter title for your vocal chain..."
+            value={description}
+            onChange={handleDescriptionChange}
+          />
         </div>
         <div className="dashboard-input">
           <img
@@ -120,7 +120,7 @@ const Create = ({ setPage }) => {
           <input
             type="text"
             className="dashboard-text-input"
-            placeholder="Enter text here..."
+            placeholder="Enter description here...(Eg: Like Travis Scott, or rage) (Optional)"
             value={description}
             onChange={handleDescriptionChange}
           />
@@ -130,6 +130,8 @@ const Create = ({ setPage }) => {
             onChange={handleFileChange}
           />
         </div>
+
+        
         <div className="dashboard-settings">
           <DashboardSettings />
         </div>

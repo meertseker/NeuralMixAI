@@ -26,13 +26,13 @@ const DashboardSettings = () => {
   return (
     <div className="main-dashboard">
       <div className="dashboard-settings-component">
-        <h1>Fine-Tune <span className="optional">(Optional)</span></h1>
+        <h1>Plugins <span className="optional">(Optional)</span></h1>
         <div className="content-container">
           <img src="plugins.jpeg" alt="Plugins" />
           <div className="settings-section">
             <div className="feelings-container">
               <h2>
-                Feelings
+                Waves Plugins
                 <button className="toggle-btn" onClick={toggleFeelings}>
                   {showFeelings ? "Hide" : "Show"}
                 </button>
@@ -56,7 +56,7 @@ const DashboardSettings = () => {
 
             <div className="effects-container">
               <h2>
-                Effects
+                FL Studio Plugins
                 <button className="toggle-btn" onClick={toggleEffects}>
                   {showEffects ? "Hide" : "Show"}
                 </button>
