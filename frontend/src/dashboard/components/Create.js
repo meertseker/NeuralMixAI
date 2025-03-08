@@ -5,6 +5,7 @@ import { useUser } from '@clerk/clerk-react';
 
 const Create = ({ setPage }) => {
   const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('');
   const [beatFile, setBeatFile] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
@@ -16,6 +17,9 @@ const Create = ({ setPage }) => {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value)
+  }
 
   const handleFileChange = (event) => {
     setBeatFile(event.target.files[0]);
@@ -57,18 +61,14 @@ const Create = ({ setPage }) => {
   
     const formData = new FormData();
     formData.append('userId', user.id);
-    formData.append('description', description);
-    if (beatFile) {
-      formData.append('beatAudio', beatFile);
-    }
-    if (audioBlob) {
-      formData.append('micAudio', audioBlob, 'recording.wav');
-    }
-  
+    formData.append('vocalChainName', title);
+    const beatData = new FormData();
+    beatData.append('userId', user.id);
+    beatData.append("beatAudio",beatFile)
     setIsLoading(true);
   
     try {
-      const response = await fetch('http://localhost:5000/save-beat', {
+      const response = await fetch('http://localhost:5000/save-vocal-chain', {
         method: 'POST',
         body: formData,
       });
@@ -78,8 +78,17 @@ const Create = ({ setPage }) => {
   
       if (!response.ok) {
         throw new Error(`Server returned ${response.status}: ${responseText}`);
+      }else{
+        const saveBeatResponse = await fetch('http://localhost:5000/save-beat',{
+          method: 'POST',
+          body: beatData,
+        });
+        const beatResponseText = await saveBeatResponse.text();
+        console.log('Response Text:', beatResponseText);
+        if (!response.ok) {
+          throw new Error(`Server returned ${response.status}: ${responseText}`);
       }
-  
+    }
       const data = JSON.parse(responseText);
       console.log('Success:', data);
       alert('Vocal chain generated successfully!');
@@ -106,8 +115,8 @@ const Create = ({ setPage }) => {
             type="text"
             className="dashboard-title-input-input"
             placeholder="Enter title for your vocal chain..."
-            value={description}
-            onChange={handleDescriptionChange}
+            value={title}
+            onChange={handleTitleChange}
           />
         </div>
         <div className="dashboard-input">
@@ -131,10 +140,6 @@ const Create = ({ setPage }) => {
           />
         </div>
 
-        
-        <div className="dashboard-settings">
-          <DashboardSettings />
-        </div>
         <div className="dashboard-generate-button" onClick={handleGenerate} disabled={isLoading}>
           <p>{isLoading ? 'Generating...' : 'Generate Vocal Chain'}</p>
         </div>

@@ -6,53 +6,101 @@ const prisma = new PrismaClient();
 
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
+const { createClient } = require('@supabase/supabase-js');
 
-app.use(cors({ origin: 'http://localhost:3001' }));
 
+const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhdWp6enplZWtpemVhZnR3d2xrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTgyMDkyMywiZXhwIjoyMDU1Mzk2OTIzfQ.gnPoNvzNfpkJrRJJINJiJrJmScBwg7DYCT1zgzL0uJQ");
+app.use(cors({
+  origin: 'http://localhost:3002', 
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json({ limit: '100mb' })); 
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
+app.post('/save-vocal-chain', upload.none(), async (req, res) => {
+  const { userId, vocalChainName } = req.body;
 
-// Define the /save-beat route
-app.post('/save-beat', upload.any(), async (req, res) => {
-  console.log('Request received at /save-beat');
-  console.log('Request Body:', req.body);
-  console.log('Request Files:', req.files);
+  if (!userId || !vocalChainName) {
+    return res.status(400).json({ error: 'Missing required fields.' });
+  }
 
   try {
-    const { userId, description } = req.body;
-    if (!userId || !description) {
-      return res.status(400).json({ error: "userId and description are required" });
-    }
-
-    const beatAudioFile = req.files.find(file => file.fieldname === 'beatAudio');
-    const micAudioFile = req.files.find(file => file.fieldname === 'micAudio');
-
-    if (!beatAudioFile || !micAudioFile) {
-      return res.status(400).json({ error: "Both beatAudio and micAudio files are required" });
-    }
-
-    const beatAudio = beatAudioFile.buffer;
-    const micAudio = micAudioFile.buffer;
-
-    const savedBeat = await prisma.beat.create({
+    const vocalChain = await prisma.vocalChain.create({
       data: {
         userId,
-        description,
-        beatAudio,
-        micAudio,
+        vocalChainName,
       },
     });
 
-    
+    res.status(201).json(vocalChain);
+  } catch (error) {
+    console.error('Error saving vocal chain:', error.message, error.stack);
+    res.status(500).json({ error: 'Internal server error.', details: error.message });
+  }
+});
 
-    res.status(201).json({ success: true, beatId: savedBeat.id });
+app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
+  console.log('Request received at /save-beat');
+  console.log('Request Body:', req.body);
+  console.log('Request Files:', req.file);
+
+  try {
+    const { userId } = req.body;
+
+    // Check if userId is provided
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+
+    const beatAudioFile = req.file;
+
+    // Check if the beat audio file is provided
+    if (!beatAudioFile) {
+      return res.status(400).json({ error: "Beat audio file is required" });
+    }
+
+    // Upload file to Supabase Storage
+    const { data, error } = await supabase.storage
+      .from('beats')  // Replace 'beats' with your bucket name
+      .upload(`${userId}/${Date.now()}.wav`, beatAudioFile.buffer);
+
+    // Check for errors during the upload
+    if (error) {
+      console.error('Error uploading file:', error);
+      return res.status(500).json({ error: "Error uploading beat file", details: error.message });
+    }
+
+    // Generate the public URL of the uploaded file
+    const beatUrl = `https://xaujzzzeekizeaftwwlk.supabase.co/storage/v1/object/public/beats/${data.path}`;
+    console.log('Beat URL:', beatUrl);
+
+    // Optionally, save beat data to your database (e.g., save the beatUrl)
+    const { data: savedBeat, error: dbError } = await supabase
+      .from('beats')  // Assuming you have a 'beats' table in your Supabase database
+      .insert([
+        {
+          user_id: userId,
+          url: beatUrl,
+          created_at: new Date(),
+        },
+      ])
+      .single();
+
+    // Check for errors when saving to the database
+    if (dbError) {
+      console.error('Error saving to database:', dbError);
+      return res.status(500).json({ error: "Failed to save beat in the database", details: dbError.message });
+    }
+
+    // Respond with success and the generated URL
+    res.status(201).json({ success: true, beatId: savedBeat.id, beatUrl: beatUrl });
+
   } catch (error) {
     console.error('Error saving beat:', error);
     res.status(500).json({ error: "Failed to save beat", details: error.message });
   }
 });
-
 app.get('/vocal-chains/:userId', async (req, res) => {
   const { userId } = req.params;
 
