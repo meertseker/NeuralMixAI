@@ -18,6 +18,7 @@ app.use(cors({
 app.use(express.json({ limit: '100mb' })); 
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
+
 app.post('/save-vocal-chain', upload.none(), async (req, res) => {
   const { userId, vocalChainName } = req.body;
 
@@ -40,20 +41,23 @@ app.post('/save-vocal-chain', upload.none(), async (req, res) => {
   }
 });
 
+
+
 app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
   console.log('Request received at /save-beat');
   console.log('Request Body:', req.body);
   console.log('Request Files:', req.file);
 
   try {
-    const { userId } = req.body;
+    const { userId, description } = req.body;
+
+    const beatAudioFile = req.file;
 
     // Check if userId is provided
     if (!userId) {
       return res.status(400).json({ error: "userId is required" });
     }
 
-    const beatAudioFile = req.file;
 
     // Check if the beat audio file is provided
     if (!beatAudioFile) {
@@ -61,9 +65,14 @@ app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
     }
 
     // Upload file to Supabase Storage
-    const { data, error } = await supabase.storage
-      .from('beats')  // Replace 'beats' with your bucket name
-      .upload(`${userId}/${Date.now()}.wav`, beatAudioFile.buffer);
+    const timestamp = new Date().toISOString(); // Create timestamp
+    const beatFileLoc = `${userId}/${timestamp}.wav`;
+    const vocalFileLoc = "draft"
+
+
+    const { error } = await supabase.storage
+      .from('beats') // Correct placement of '.from()' method
+      .upload(beatFileLoc, beatAudioFile.buffer);
 
     // Check for errors during the upload
     if (error) {
@@ -71,21 +80,16 @@ app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
       return res.status(500).json({ error: "Error uploading beat file", details: error.message });
     }
 
-    // Generate the public URL of the uploaded file
-    const beatUrl = `https://xaujzzzeekizeaftwwlk.supabase.co/storage/v1/object/public/beats/${data.path}`;
-    console.log('Beat URL:', beatUrl);
-
     // Optionally, save beat data to your database (e.g., save the beatUrl)
-    const { data: savedBeat, error: dbError } = await supabase
-      .from('beats')  // Assuming you have a 'beats' table in your Supabase database
-      .insert([
-        {
-          user_id: userId,
-          url: beatUrl,
-          created_at: new Date(),
-        },
-      ])
-      .single();
+    const savedBeat = await prisma.userInput.create({
+      data: {
+        userId,
+        beatUrl:beatFileLoc,
+        AudioUrl:vocalFileLoc,
+        description: description
+         // Emin olmak için String'e çevir
+      },
+    });
 
     // Check for errors when saving to the database
     if (dbError) {
@@ -94,13 +98,16 @@ app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
     }
 
     // Respond with success and the generated URL
-    res.status(201).json({ success: true, beatId: savedBeat.id, beatUrl: beatUrl });
+    res.status(201).json({ success: true, beatId: savedBeat.id, beatUrl: supabaseFileName });
 
   } catch (error) {
     console.error('Error saving beat:', error);
     res.status(500).json({ error: "Failed to save beat", details: error.message });
   }
 });
+
+
+
 app.get('/vocal-chains/:userId', async (req, res) => {
   const { userId } = req.params;
 

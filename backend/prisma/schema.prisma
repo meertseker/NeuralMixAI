@@ -7,61 +7,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Beat {
-  id          Int      @id @default(autoincrement())
-  userId      String   // Clerk'ten gelen user ID'si
-  description String
-  beatAudio   Bytes
-  micAudio    Bytes
-  properties  BeatProperties?  // Optional relationship
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
 model BeatProperties {
-  id                 Int      @id @default(autoincrement())
-  beatId             Int     @unique  // Ensure that each Beat has only one associated BeatProperties
-  beat               Beat     @relation(fields: [beatId], references: [id])
-  genrePrediction    String
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-}
-
-model VocalChain {
-  id               Int      @id @default(autoincrement())
-  userId           String   // Clerk'ten gelen user ID'si
-  vocalChainName   String
-  presets          Preset[]
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model Preset {
-  id             Int      @id @default(autoincrement())
-  vocalChainId   Int
-  vocalChain     VocalChain @relation(fields: [vocalChainId], references: [id])
-  presetName     String
-  plugins        Plugin[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  genrePrediction String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime
+  beat            String
 }
 
 model Plugin {
-  id             Int      @id @default(autoincrement())
-  presetId       Int
-  preset         Preset   @relation(fields: [presetId], references: [id])
-  pluginName     String
-  settings       PluginSetting[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            Int             @id @default(autoincrement())
+  presetId      Int
+  pluginName    String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime
+  Preset        Preset          @relation(fields: [presetId], references: [id])
+  PluginSetting PluginSetting[]
 }
 
 model PluginSetting {
-  id                Int      @id @default(autoincrement())
-  pluginId          Int
-  plugin            Plugin   @relation(fields: [pluginId], references: [id])
-  pluginSettingName String
+  id                 Int      @id @default(autoincrement())
+  pluginId           Int
+  pluginSettingName  String
   pluginSettingValue String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  Plugin             Plugin   @relation(fields: [pluginId], references: [id])
+}
+
+model Preset {
+  id           Int        @id @default(autoincrement())
+  vocalChainId Int
+  presetName   String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime
+  Plugin       Plugin[]
+  VocalChain   VocalChain @relation(fields: [vocalChainId], references: [id])
+}
+
+model UserInput {
+  id          Int    @id @default(autoincrement())
+  userId      String
+  description String
+  beatUrl     String
+  AudioUrl    String
+}
+
+model VocalChain {
+  id             Int      @id @default(autoincrement())
+  userId         String
+  vocalChainName String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime
+  Preset         Preset[]
 }

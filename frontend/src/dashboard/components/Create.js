@@ -65,6 +65,7 @@ const Create = ({ setPage }) => {
     const beatData = new FormData();
     beatData.append('userId', user.id);
     beatData.append("beatAudio",beatFile)
+    beatData.append("description",description)
     setIsLoading(true);
   
     try {
