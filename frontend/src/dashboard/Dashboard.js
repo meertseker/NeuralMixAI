@@ -17,8 +17,7 @@ const Dashboard = () => {
     if (!isSignedIn) {
       navigate('/login');
     }
-  }, [isSignedIn, navigate]);
- 
+  }, [isSignedIn, navigate]); 
   return (
     <div className='dashboard'>
       <div className="sidebar">

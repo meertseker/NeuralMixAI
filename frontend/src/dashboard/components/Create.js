@@ -6,14 +6,14 @@ import { useUser } from '@clerk/clerk-react';
 const Create = ({ setPage }) => {
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
-  const [beatFile, setBeatFile] = useState(null);
+  const [beatFile, setBeatFile] = useState(null); 
   const [isRecording, setIsRecording] = useState(false);
   const [audioBlob, setAudioBlob] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const { user } = useUser();
-
+  
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
@@ -52,7 +52,7 @@ const Create = ({ setPage }) => {
       mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
     }
   };
-
+  
   const handleGenerate = async () => {
     if (!user) {
       alert('Please sign in to generate a vocal chain.');
@@ -62,6 +62,7 @@ const Create = ({ setPage }) => {
     const formData = new FormData();
     formData.append('userId', user.id);
     formData.append('vocalChainName', title);
+
     const beatData = new FormData();
     beatData.append('userId', user.id);
     beatData.append("beatAudio",beatFile)

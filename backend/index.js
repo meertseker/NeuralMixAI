@@ -11,13 +11,70 @@ const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhdWp6enplZWtpemVhZnR3d2xrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTgyMDkyMywiZXhwIjoyMDU1Mzk2OTIzfQ.gnPoNvzNfpkJrRJJINJiJrJmScBwg7DYCT1zgzL0uJQ");
 app.use(cors({
-  origin: 'http://localhost:3002', 
+  origin: 'http://localhost:3000', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json({ limit: '100mb' })); 
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
+const getVocalChainDetails = async (vocalChainName) => {
+  try {
+    const vocalChain = await prisma.vocalChain.findFirst({
+      where: { vocalChainName },
+      include: {
+        Preset: {
+          include: {
+            Plugin: {
+              include: {
+                PluginSetting: true
+              }
+            }
+          }
+        }
+      }
+    });
+
+    if (!vocalChain) {
+      return { error: "Vocal chain not found" };
+    }
+
+    return vocalChain;
+  } catch (error) {
+    console.error("Error fetching vocal chain details:", error);
+    return { error: "Failed to retrieve data" };
+  }
+};
+
+const sendMessageToDeepSeek = async (message) => {
+  try {
+    const response = await axios.post('https://api.deepseek.com/message', {
+      message: message
+    });
+
+    // Process the response
+    console.log("Response from Deep Seek:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error sending message to Deep Seek:", error);
+    return { error: "Failed to send message" };
+  }
+};
+
+app.post('/update-chain', upload.none(), async (req, res) => {
+
+  const {userId, vocalChainName, userMessage } = req.body;
+
+  const chain = await getVocalChainDetails(vocalChainName);
+  if (result.error) {
+    return res.status(404).json(result);
+  }
+  res.json(chain);
+  const deepSeekUpdatePrompt = "update the vocal chain given based on the message and return in json again in the same format. here is the message:"
+  const message = chain.toISOString() + deepSeekUpdatePrompt + userMessage
+  const updatedChain = sendMessageToDeepSeek(message)
+
+})
 
 app.post('/save-vocal-chain', upload.none(), async (req, res) => {
   const { userId, vocalChainName } = req.body;
@@ -43,6 +100,8 @@ app.post('/save-vocal-chain', upload.none(), async (req, res) => {
 
 
 
+
+
 app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
   console.log('Request received at /save-beat');
   console.log('Request Body:', req.body);
@@ -52,11 +111,6 @@ app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
     const { userId, description } = req.body;
 
     const beatAudioFile = req.file;
-
-    // Check if userId is provided
-    if (!userId) {
-      return res.status(400).json({ error: "userId is required" });
-    }
 
 
     // Check if the beat audio file is provided
@@ -80,14 +134,13 @@ app.post('/save-beat', upload.single('beatAudio'), async (req, res) => {
       return res.status(500).json({ error: "Error uploading beat file", details: error.message });
     }
 
-    // Optionally, save beat data to your database (e.g., save the beatUrl)
+    // save the beatUrl
     const savedBeat = await prisma.userInput.create({
       data: {
         userId,
         beatUrl:beatFileLoc,
         AudioUrl:vocalFileLoc,
         description: description
-         // Emin olmak için String'e çevir
       },
     });
 
@@ -131,39 +184,6 @@ app.get('/vocal-chains/:userId', async (req, res) => {
   }
 });
 
-app.post('/analyze-beat', async (req, res) => {
-  try {
-      const audioBlob = req.body.audioBlob; // Assuming the audio blob is sent as a base64-encoded string
-
-      if (!audioBlob) {
-          return res.status(400).json({ error: 'No audio blob provided' });
-      }
-
-      // Prepare the payload for the Dolby API
-      const payload = {
-          audio: audioBlob, // The base64-encoded audio data
-          // Add any other parameters required by the Dolby API
-      };
-
-      const response = await axios.post(
-          'https://api.dolby.com/media/analyze/music',
-          payload,
-          {
-              headers: {
-                  'accept': 'application/json',
-                  'content-type': 'application/json',
-                  'Authorization': `Bearer ${process.env.DOLBY_API_KEY}`
-              }
-          }
-      );
-
-      // Return the analysis results
-      res.json(response.data);
-  } catch (error) {
-      console.error('Error analyzing beat:', error);
-      res.status(500).json({ error: error.message });
-  }
-});
 
 // Start the server
 const PORT = 5000;
