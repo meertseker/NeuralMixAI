@@ -1,3 +1,4 @@
+const axios = require('axios');
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
@@ -46,20 +47,68 @@ const getVocalChainDetails = async (vocalChainName) => {
   }
 };
 
+
 const sendMessageToDeepSeek = async (message) => {
   try {
-    const response = await axios.post('https://api.deepseek.com/message', {
-      message: message
-    });
-
-    // Process the response
-    console.log("Response from Deep Seek:", response.data);
+    const response = await axios.post(
+      'https://api.deepseek.com/v1/chat/completions', 
+      {
+        model: 'deepseek-chat', 
+        messages: [{ role: 'user', content: message }],
+        stream: false,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer sk-80bea244c681450999d6bff0de532023', 
+        },
+      }
+    );
     return response.data;
   } catch (error) {
-    console.error("Error sending message to Deep Seek:", error);
-    return { error: "Failed to send message" };
+    console.error('DeepSeek API error:', error.response ? error.response.data : error.message);
+    return { error: 'Could not send message to DeepSeek' };
   }
 };
+
+module.exports = { sendMessageToDeepSeek };
+
+
+app.post('/generate-chain', upload.none(), async (req, res) => {
+
+  const type = ""
+  const sex =""
+  const sibilance =""
+  const dynamicRange =""
+  const resonance =""
+  const frequencySpectrum = ""
+
+
+  const prompt = `I want you to apply a perfect mix for a ${type} song following vocal features, 
+                  Frequency Spectrum: ${frequencySpectrum} Sex of artist: ${sex} Sibilance: ${sibilance} 
+                  Dynamic Range: ${dynamicRange} Resonance: ${resonance}. Your answer will be a json inside bracelets([]) , 
+                  you will provide each effect name, along with settings that effect include, for example, for reverb, you should include everything like
+                    {
+                  "Room Size": "Medium",
+                  "Pre-delay": "20ms",
+                  "Decay Time": "2.5s",
+                  "Damping": "50%",
+                  "Wet/Dry Mix": "30% Wet, 70% Dry",
+                  "Modulation": "Slight",
+                  "Early Reflections": "5ms",
+                  "Reverb Type": "Hall",
+                  "Stereo Width": "120%",
+                  "Input/Output Gain": "0dB",
+                  "Low/High Cut": "80Hz / 8kHz",
+                  "Feedback": "15%"
+                    } i want you to include every setting for each effect required like this.` 
+  
+  result = sendMessageToDeepSeek(prompt)
+                  
+
+})
+
+
 
 app.post('/update-chain', upload.none(), async (req, res) => {
 
