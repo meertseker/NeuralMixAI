@@ -1,9 +1,8 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Inter';
 }
 
 html, body {
@@ -14,41 +13,53 @@ body {
   color: #131010;
   background-color: #000000;
   line-height: 1.6;
-  overflow-y: auto; /* Enable scrolling for the entire page */
+  overflow-y: auto;
 }
 
+/* Main Container */
 .homepage {
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
   width: 100%;
   position: relative;
-  overflow: hidden; /* Prevent blur from leaking outside */
-
 }
 
-.introduction {
-  margin-top: -200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-  backdrop-filter: blur(20px); /* Frosted glass effect */
-  -webkit-backdrop-filter: blur(20px); /* Safari support */
-  border-radius: 12px; /* Optional: Rounded corners */
-  overflow: hidden; /* Contain child elements */
-  height: 1800px;
-  width: 100vw;
+/* Scrollable Content Area */
+.scroll-container {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  padding: 2rem 0;
+}
+
+/* Sections Styling */
+.section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
   position: relative;
-  opacity: 80%;
+  z-index: 3;
 }
 
+/* Introduction Section */
+.introduction {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  margin:  auto;
+  width: 100%;
+  max-width: 100vw;
+  z-index: 2;
+  margin-top: -40px;
+  padding-bottom: 30px;
+}
 
-
-
-/* Purple Blur Effect (Centered) */
 .blur {
   position: absolute;
   width: 825px;
@@ -58,22 +69,21 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1; /* Behind content */
+  z-index: 1;
   opacity: 50%;
 }
 
-/* Centered Content Container */
+/* Content Styling */
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: 2; /* Above blur */
+  z-index: 2;
   position: relative;
 }
 
-/* "NEW SOON" Badge (Now Centered) */
 .soon {
   display: flex;
   align-items: center;
@@ -83,7 +93,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 50px;
   color: white;
-  margin-bottom: 30px; /* Space below badge */
+  margin-bottom: 30px;
 }
 
 .new {
@@ -93,7 +103,6 @@ body {
   font-size: 12px;
 }
 
-/* Heading & Subheading */
 .welcome-text {
   font-family: 'Inter';
   font-weight: 500;
@@ -114,7 +123,7 @@ body {
   margin-bottom: 40px;
 }
 
-.waitlist-btn{
+.waitlist-btn {
   padding: 10px 30px;
   background: #ffffff;
   color: #000000;
@@ -123,15 +132,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
   z-index: 2;
+  margin: 1rem 0;
 }
 
-.dash-preview{
+.dash-preview {
   background-color: #602A9A;
   max-width: 1200px;
   max-height: 600px;
-
-  margin-top: 80px;
-  border: solid 5px#490966;
+  margin: 2rem auto;
+  border: solid 5px #490966;
   border-radius: 25px;
   z-index: 10;
 }
@@ -139,73 +148,68 @@ body {
 .dash-preview img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Keeps the aspect ratio and fits inside */
+  object-fit: contain;
 }
 
-.navbar {
+
+.navbar-section{
+  height: 100px;
   display: flex;
-  background-color: rgb(11, 52, 90);
-  height: 65px;
-  width: 1200px;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: -300px;
+  background: linear-gradient(
+    to top,
+    rgba(96, 42, 154, 0) 0%,
+    rgba(96, 42, 154, 0) 10%,
+    rgba(96, 42, 154, 0) 20%,
+    rgba(96, 42, 154, 0) 40%,
+    rgba(96, 42, 154, 0.315) 100%
+  );
+  
 }
 
-.daws{
+.navbar-section ul{
   display: flex;
-  background-color: rgba(139, 21, 21, 0.781);
-  height: 390px;
-  width: 1200px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  gap: 100px;
+  color: #ffffff;
+  font-size: 1.3rem;
+}
+
+.navbar-section ul li a{
+  color: #ffffff;
+  font-size: 1.3rem;
+  text-decoration: none;
 }
 
 
-.pitcure-text{
-  display: flex;
-  background-color: rgb(201, 48, 193);
-  height: 1136px;
-  width: 1200px;
-  justify-content: center;
-  align-items: center;
+
+
+/* Section Colors */
+.navbar { 
+  background-color: rgb(11, 52, 90); }
+.daws { background-color: rgba(139, 21, 21, 0.781); }
+.pitcure-text { background-color: rgb(201, 48, 193); }
+.information { background-color: rgb(26, 145, 26); }
+.waitlist { background-color: rgb(83, 23, 196); }
+.footer { background-color: rgb(209, 0, 0); }
+
+/* Animations */
+@keyframes streak {
+  0% { left: -100%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.5; }
+  100% { left: 150%; opacity: 0; }
 }
 
-
-.information{
-  display: flex;
-  background-color: rgb(26, 145, 26);
-  height: 681px;
-  width: 1200px;
-  justify-content: center;
-  align-items: center;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.7; }
 }
-
-.waitlist{
-  display: flex;
-  background-color: rgb(83, 23, 196);
-  height: 558px;
-  width: 1200px;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer{
-  display: flex;
-  background-color: rgb(209, 0, 0);
-  height: 408px;
-  width: 1200px;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .light-streak {
-  margin-top: -344px;
-  margin-bottom: 60px;
   position: relative;
-  top: 0;
-  left: -100%;
   width: 60%;
   height: 2px;
   background: linear-gradient(
@@ -216,38 +220,54 @@ body {
   );
   animation: streak 6s infinite ease-in-out;
   filter: blur(1px);
+  margin: 1rem 0;
+  margin-top: -40px;
 }
 
 .light-streak-2 {
-  top: 30%;
   animation-delay: 1s;
   width: 40%;
 }
 
-@keyframes streak {
-  0% { left: -100%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 0.5; }
-  100% { left: 150%; opacity: 0; }
-}
-
-@keyframes slideUp {
-  0% {
-    transform: translateY(50px); /* Start 50px below */
-    opacity: 0; /* Start invisible */
-  }
-  100% {
-    transform: translateY(0); /* End at normal position */
-    opacity: 1; /* Fully visible */
-  }
-}
-
-.introduction {
-  animation: fadeIn 1.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.7; }
+.introduction::after {
+  content: '';
+  position: absolute;
+  bottom: -250px;
+  left: 0;
+  width: 100%;
+  height: 600px; /* Height of the fade area */
   
+  /* Gradient mask - creates the fade effect */
+  mask-image: linear-gradient(
+    to bottom, 
+    transparent 0%,
+    black 10%,
+    black 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom, 
+    transparent 0%,
+    black 10%,
+    black 60%,
+    transparent 100%
+  );
+  
+  /* Blur effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Purple tint */
+  background: linear-gradient(
+    to bottom,
+    rgba(96, 42, 154, 0) 0%,
+    rgba(96, 42, 154, 0) 10%,
+    rgba(96, 42, 154, 0) 20%,
+    rgba(96, 42, 154, 0) 40%,
+    rgba(96, 42, 154, 0.7) 100%
+  );
+  
+  pointer-events: none;
+  z-index: 2;
 }
+
