@@ -45,9 +45,105 @@ const Intro = () => {
             </ul>
           </section>
           
-          <section className='daws section'>
-            Compatible DAWs
-          </section>
+          <section className='how-to section'>
+          <div class="bento1">
+
+          <div class="seo-section">
+            <div class="seo-section-bg"></div>
+            <div class="visual">
+              <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
+            </div>
+            <div class="text-container">
+              <div class="heading">One click chains</div>
+              <div class="description">Save big time on mixing, release your tracks faster</div>
+            </div>
+          </div> 
+  
+      
+          <div class="user-friendly-section">
+          <div class="user-friendly-bg"></div>
+          
+
+          <div class="dashboard-visual">
+            <img src="dashboarddds.png" alt="Dashboard interface" class="dashboard-image"/>
+          </div>
+          
+
+          <div class="gradient-overlay"></div>
+          
+          <div class="user-friendly-text">
+            <div class="user-friendly-heading">User-friendly dashboard</div>
+            <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+          </div>
+        </div>
+        </div>
+        <div class="bento1">
+
+        <div class="seo-section">
+          <div class="seo-section-bg"></div>
+          <div class="visual">
+            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
+          </div>
+          <div class="text-container">
+            <div class="heading">One click chains</div>
+            <div class="description">Save big time on mixing, release your tracks faster</div>
+          </div>
+        </div> 
+
+
+        <div class="user-friendly-section">
+        <div class="user-friendly-bg"></div>
+
+
+        <div class="dashboard-visual">
+          <img src="dashboardddd.png" alt="Dashboard interface" class="dashboard-image"/>
+        </div>
+
+
+        <div class="gradient-overlay"></div>
+
+        <div class="user-friendly-text">
+          <div class="user-friendly-heading">User-friendly dashboard</div>
+          <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+        </div>
+        </div>
+        </div>
+        <div class="bento1">
+
+        <div class="seo-section">
+          <div class="seo-section-bg"></div>
+          <div class="visual">
+            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
+          </div>
+          <div class="text-container">
+            <div class="heading">One click chains</div>
+            <div class="description">Save big time on mixing, release your tracks faster</div>
+          </div>
+        </div> 
+
+
+        <div class="user-friendly-section">
+        <div class="user-friendly-bg"></div>
+
+
+        <div class="dashboard-visual">
+          <img src="dashboardddd.png" alt="Dashboard interface" class="dashboard-image"/>
+        </div>
+
+
+        <div class="gradient-overlay"></div>
+
+        <div class="user-friendly-text">
+          <div class="user-friendly-heading">User-friendly dashboard</div>
+          <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+        </div>
+        </div>
+        </div>
+
+        
+
+        
+        </section>
           
           <section className='pitcure-text section'>
             Information with Screenshot

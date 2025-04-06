@@ -2,11 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter';
+  font-family: system-ui;
 }
 
 html, body {
   height: 100%;
+  
 }
 
 body {
@@ -58,6 +59,7 @@ body {
   z-index: 2;
   margin-top: -40px;
   padding-bottom: 30px;
+  
 }
 
 .blur {
@@ -161,10 +163,10 @@ body {
   background: linear-gradient(
     to top,
     rgba(96, 42, 154, 0) 0%,
-    rgba(96, 42, 154, 0) 10%,
     rgba(96, 42, 154, 0) 20%,
+    rgba(96, 42, 154, 0) 30%,
     rgba(96, 42, 154, 0) 40%,
-    rgba(96, 42, 154, 0.315) 100%
+    rgba(96, 42, 154, 0.315) 90%
   );
   
 }
@@ -182,18 +184,161 @@ body {
   font-size: 1.3rem;
   text-decoration: none;
 }
+/* Main Bento container */
+
+.how-to{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bento1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  width: 1100px;
+  height: 400px;
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+}
+
+/* SEO section (Left Panel) */
+.seo-section {
+  width: 346px;
+  height: 400px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.seo-section-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+.visual {
+  position: absolute;
+  width: 265px;
+  height: 206px;
+  left: 41px;
+  top: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visual-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.text-container {
+  position: absolute;
+  width: 259px;
+  height: 79px;
+  left: 40px;
+  top: 281px;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 31px;
+  letter-spacing: -0.0001em;
+  color: #FFFFFF;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.0001em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}
+
+/* User Friendly section (Right Panel) */
+.user-friendly-section {
+  width: 744px;
+  height: 400px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-friendly-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #000000 0%, #371866 100%);
+  border-radius: 10px;
+}
 
 
+.user-friendly-text {
+  position: absolute;
+  width: 259px;
+  height: 86px;
+  left: 40px;
+  bottom: 40px;
+}
 
+.user-friendly-heading {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 31px;
+  letter-spacing: -0.0001em;
+  color: #FFFFFF;
+}
 
+.user-friendly-description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.0001em;
+  color: rgba(255, 255, 255, 0.7);
+
+  
+}
+
+.dashboard-visual {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.dashboard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gradient-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(179.77deg, rgba(3, 1, 6, 0) 29.33%, #361764 89.04%);
+  pointer-events: none; /* Allows clicking through to elements below */
+}
 /* Section Colors */
 .navbar { 
   background-color: rgb(11, 52, 90); }
-.daws { background-color: rgba(139, 21, 21, 0.781); }
 .pitcure-text { background-color: rgb(201, 48, 193); }
 .information { background-color: rgb(26, 145, 26); }
 .waitlist { background-color: rgb(83, 23, 196); }
-.footer { background-color: rgb(209, 0, 0); }
+.footer { background-color: rgba(255, 255, 255, 0.171); }
 
 /* Animations */
 @keyframes streak {
