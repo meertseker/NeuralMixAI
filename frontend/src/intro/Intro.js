@@ -1,6 +1,8 @@
 import React from 'react';
 import "./Intro.css";
 import { useNavigate } from 'react-router-dom';
+import FlSection from "./components/FlSection"
+import WaitlistCTA from './components/Waitlist';
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ const Intro = () => {
           
 
           <div class="dashboard-visual">
-            <img src="dashboarddds.png" alt="Dashboard interface" class="dashboard-image"/>
+            <img src="dashcard1.png" alt="Dashboard interface" class="dashboard-image"/>
           </div>
           
 
@@ -79,34 +81,34 @@ const Intro = () => {
         </div>
         <div class="bento1">
 
-        <div class="seo-section">
-          <div class="seo-section-bg"></div>
-          <div class="visual">
-            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
-          </div>
-          <div class="text-container">
-            <div class="heading">One click chains</div>
-            <div class="description">Save big time on mixing, release your tracks faster</div>
-          </div>
-        </div> 
-
-
         <div class="user-friendly-section">
         <div class="user-friendly-bg"></div>
 
 
         <div class="dashboard-visual">
-          <img src="dashboardddd.png" alt="Dashboard interface" class="dashboard-image"/>
+          <img src="previewdash.png" alt="Dashboard interface" class="dashboard-image"/>
         </div>
 
 
         <div class="gradient-overlay"></div>
 
         <div class="user-friendly-text">
-          <div class="user-friendly-heading">User-friendly dashboard</div>
-          <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+          <div class="user-friendly-heading">See what needed for your vocals</div>
+          <div class="user-friendly-description">Look for the effects and plugins required for your vibe</div>
         </div>
         </div>
+
+        <div class="seo-section">
+          <div class="seo-section-bg"></div>
+          <div class="visual">
+            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
+          </div>
+          <div class="text-container">
+            <div class="heading">Preview your chain</div>
+            <div class="description">Preview the chain created specificly for your vibe</div>
+          </div>
+        </div> 
+
         </div>
         <div class="bento1">
 
@@ -116,8 +118,8 @@ const Intro = () => {
             <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
           </div>
           <div class="text-container">
-            <div class="heading">One click chains</div>
-            <div class="description">Save big time on mixing, release your tracks faster</div>
+            <div class="heading">Update your chains</div>
+            <div class="description">If not satisfied, all chains are adjustable.</div>
           </div>
         </div> 
 
@@ -127,18 +129,19 @@ const Intro = () => {
 
 
         <div class="dashboard-visual">
-          <img src="dashboardddd.png" alt="Dashboard interface" class="dashboard-image"/>
+          <img src="updatechain.png" alt="Dashboard interface" class="dashboard-image"/>
         </div>
 
 
         <div class="gradient-overlay"></div>
 
         <div class="user-friendly-text">
-          <div class="user-friendly-heading">User-friendly dashboard</div>
-          <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+          <div class="user-friendly-heading">Update chains via Saucy AI chatbot</div>
+          <div class="user-friendly-description">Saucy AI can understand basic terms to achieve your desired sound</div>
         </div>
         </div>
         </div>
+
 
         
 
@@ -146,19 +149,17 @@ const Intro = () => {
         </section>
           
           <section className='pitcure-text section'>
-            Information with Screenshot
+            <FlSection/>
           </section>
-          
-          <section className='information section'>
-            Specific Information
-          </section>
-          
+          <div className="purple-glow"></div>
           <section className='waitlist section'>
-            Waitlist Form
+            
+          <WaitlistCTA />
           </section>
           
           <section className='footer section'>
-            Footer Content
+            Contact: support@saucyai.co
+            <p>For employment: hire@saucyai.co</p>
           </section>
         </div>
       </div>
