@@ -62,3 +62,8 @@ model VocalChain {
   updatedAt      DateTime
   Preset         Preset[]
 }
+
+model Subcriptions {
+  id             Int      @id @default(autoincrement())
+  email          String
+}

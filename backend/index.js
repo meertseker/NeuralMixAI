@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
 const { createClient } = require('@supabase/supabase-js');
+const value = process.env.SUPABASE_SERVICE_KEY;
 
-
-const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhdWp6enplZWtpemVhZnR3d2xrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTgyMDkyMywiZXhwIjoyMDU1Mzk2OTIzfQ.gnPoNvzNfpkJrRJJINJiJrJmScBwg7DYCT1zgzL0uJQ");
+const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', value);
 app.use(cors({
   origin: 'http://localhost:3000', 
   methods: ['GET', 'POST'],
@@ -60,7 +60,7 @@ const sendMessageToDeepSeek = async (message) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer sk-80bea244c681450999d6bff0de532023', 
+          'Authorization': '', 
         },
       }
     );
@@ -233,6 +233,27 @@ app.get('/vocal-chains/:userId', async (req, res) => {
   }
 });
 
+
+app.post('/savewaitlist', upload.none(), async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required.' });
+  }
+
+  try {
+    const savedEmail = await prisma.subcriptions.create({
+      data: {
+        email,
+      },
+    });
+
+    res.status(201).json({ success: true, data: savedEmail });
+  } catch (error) {
+    console.error('Error saving email to waitlist:', error.message);
+    res.status(500).json({ error: 'Failed to save email.', details: error.message });
+  }
+});
 
 // Start the server
 const PORT = 5000;

@@ -3,9 +3,17 @@ import "./Intro.css";
 import { useNavigate } from 'react-router-dom';
 import FlSection from "./components/FlSection"
 import WaitlistCTA from './components/Waitlist';
+import { useEffect, useRef } from 'react';
 
 const Intro = () => {
   const navigate = useNavigate();
+
+
+  const waitlistRef = useRef(null);
+
+  const scrollToWaitlist = () => {
+    waitlistRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className='homepage'>
@@ -17,20 +25,20 @@ const Intro = () => {
           <div className="content">
             <div className="soon">
               <div className="new">NEW</div>
-              SOON AVAILABLE VIA OUR VST
+              LAUNCHING SOON
             </div>
             
             <h1 className='welcome-text'>Introduction to Saucy AI</h1>
             <h2 className="welcome-sub-text">
-              Mix your vocals instantly, give us a sample of your vocal, we’ll handle the rest
+              Get mixer preset files instantly. Works with your DAW. Just send a sample of your vocal—we’ll handle the rest.
             </h2>
 
-            <button className="waitlist-btn" onClick={() => navigate('/dashboard')}>
-              Go to Dashboard
+            <button className="waitlist-btn" onClick={scrollToWaitlist}>
+              Join Waitlist!
             </button>
 
             <div className="dash-preview">
-              <img src="dashboardss.png" alt="Dashboard Preview" />
+              <img src="dashfinal.png" alt="Dashboard Preview" />
             </div>
           </div>
         </section>
@@ -38,12 +46,13 @@ const Intro = () => {
         <div className="section-wrapper">
           <section className='navbar-section'>
             <ul>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#forwriters">For Producers</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#team">Team</a></li>
+            
+            <li> <img src="logo.png" alt="" /></li>
+            <li> <img src="logo.png" alt="" /></li>
+            <li> <img src="logo.png" alt="" /></li>
+            <li> <img src="logo.png" alt="" /></li>
+            <li> <img src="logo.png" alt="" /></li>
+            <li> <img src="logo.png" alt="" /></li>
             </ul>
           </section>
           
@@ -56,7 +65,7 @@ const Intro = () => {
               <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
             </div>
             <div class="text-container">
-              <div class="heading">One click chains</div>
+              <div class="heading">One click vocal chains</div>
               <div class="description">Save big time on mixing, release your tracks faster</div>
             </div>
           </div> 
@@ -79,8 +88,23 @@ const Intro = () => {
           </div>
         </div>
         </div>
+
+
         <div class="bento1">
 
+
+        <div class="seo-section">
+          <div class="seo-section-bg"></div>
+          <div class="visual">
+            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
+          </div>
+          <div class="text-container">
+            <div class="heading">Preview your chain</div>
+            <div class="description">Preview the chain created specificly for your vibe</div>
+          </div>
+        </div> 
+
+        
         <div class="user-friendly-section">
         <div class="user-friendly-bg"></div>
 
@@ -97,17 +121,6 @@ const Intro = () => {
           <div class="user-friendly-description">Look for the effects and plugins required for your vibe</div>
         </div>
         </div>
-
-        <div class="seo-section">
-          <div class="seo-section-bg"></div>
-          <div class="visual">
-            <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
-          </div>
-          <div class="text-container">
-            <div class="heading">Preview your chain</div>
-            <div class="description">Preview the chain created specificly for your vibe</div>
-          </div>
-        </div> 
 
         </div>
         <div class="bento1">
@@ -152,7 +165,7 @@ const Intro = () => {
             <FlSection/>
           </section>
           <div className="purple-glow"></div>
-          <section className='waitlist section'>
+          <section className='waitlist section' ref={waitlistRef}>
             
           <WaitlistCTA />
           </section>
