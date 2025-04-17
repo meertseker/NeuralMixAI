@@ -12,7 +12,7 @@ const value = process.env.SUPABASE_SERVICE_KEY;
 
 const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', value);
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'http://saucyai.co', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

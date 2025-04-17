@@ -34,7 +34,7 @@
   .testimonial-container {
     width: 100%;
     max-width: 1200px; /* Increased from 990px */
-    min-height: 401px; /* Changed from fixed height to min-height */
+    min-height: 200px; /* Changed from fixed height to min-height */
     position: relative;
     margin: 0 auto;
     z-index: 1;
@@ -49,39 +49,41 @@
   .horizontal-line-1 {
     left: 0;
     right: 0;
-    top: 21.45%;
+    top: 10.45%;
     height: 1px;
   }
   
   .horizontal-line-2 {
     left: 0;
     right: 0;
-    top: 75.56%;
+    top: 112.56%;
     height: 1px;
   }
   
   .vertical-line-1 {
     top: 0;
     bottom: 0;
-    left: 20.4%;
+    left: 14.4%;
     width: 1px;
+    height: 270px;
   }
   
   .vertical-line-2 {
     top: 0;
     bottom: 0;
-    left: 42.32%;
+    left: 39.62%;
     width: 1px;
+    height: 250px;
   }
   
   .avatar {
     position: absolute;
-    left: 20.4%;
-    top: 21.45%;
-    width: 22%;
-    height: 54.11%;
+    left: 14.6%;
+    top: 11.85%;
+    width: 25%;
+    height: 100%;
     background-color: #8C45FF;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
   }
   
@@ -164,3 +166,102 @@
       display: none;
     }
   }
+
+  /* Tablet ve büyük telefonlar (<=768px) */
+@media (max-width: 768px) {
+  .clients-section {
+    padding: 60px 20px;
+  }
+
+  .headingfl {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .subheading {
+    max-width: 90%;
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 30px;
+  }
+
+  .testimonial-container {
+    padding-bottom: 40px;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+    margin: 30px auto;
+  }
+
+  .testimonial-content {
+    max-width: 90%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .quote {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .author {
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: -10px;
+  }
+
+  .author-title {
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .purple-glow {
+    display: none; /* blur fazla, mobilde kapatalım */
+  }
+}
+
+/* Küçük telefonlar (<=480px) */
+@media (max-width: 480px) {
+  .clients-section {
+    padding: 40px 10px;
+  }
+
+  .headingfl {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .subheading {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+  }
+
+  .testimonial-content {
+    width: 100%;
+  }
+
+  .quote {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .author {
+    font-size: 13px;
+    line-height: 22px;
+    margin-top: -8px;
+  }
+
+  .author-title {
+    font-size: 11px;
+    line-height: 20px;
+  }
+}
