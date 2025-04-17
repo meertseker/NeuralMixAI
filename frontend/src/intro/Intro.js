@@ -28,13 +28,13 @@ const Intro = () => {
               LAUNCHING SOON
             </div>
             
-            <h1 className='welcome-text'>Introduction to Saucy AI</h1>
+            <h1 className='welcome-text'>Instant Mixer Presets with Saucy AI</h1>
             <h2 className="welcome-sub-text">
-              Get mixer preset files instantly. Works with your DAW. Just send a sample of your vocal—we’ll handle the rest.
+            Drop a vocal. Get a ready-to-record vocal chain.
             </h2>
 
             <button className="waitlist-btn" onClick={scrollToWaitlist}>
-              Join waitlist!
+            Reserve Your Spot
             </button>
 
             <div className="dash-preview">
@@ -66,7 +66,7 @@ const Intro = () => {
             </div>
             <div class="text-container">
               <div class="heading">One click vocal chains</div>
-              <div class="description">Save big time on mixing, release your tracks faster</div>
+              <div class="description">Upload your vocal. Pick the vibe. Get your chain.</div>
             </div>
           </div> 
   
@@ -83,8 +83,8 @@ const Intro = () => {
           <div class="gradient-overlay"></div>
           
           <div class="user-friendly-text">
-            <div class="user-friendly-heading">User-friendly dashboard</div>
-            <div class="user-friendly-description">Upload your vocal, describe the vibe and let it handle the rest</div>
+            <div class="user-friendly-heading">Automatic Vocal Analysis</div>
+            <div class="user-friendly-description">Saucy AI listens and builds your sound chain.</div>
           </div>
         </div>
         </div>
@@ -99,8 +99,8 @@ const Intro = () => {
             <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
           </div>
           <div class="text-container">
-            <div class="heading">Preview your chain</div>
-            <div class="description">Preview the chain created specificly for your vibe</div>
+            <div class="heading">Preview Your Chain</div>
+            <div class="description">See how your vocal is processed in real time.</div>
           </div>
         </div> 
 
@@ -117,8 +117,8 @@ const Intro = () => {
         <div class="gradient-overlay"></div>
 
         <div class="user-friendly-text">
-          <div class="user-friendly-heading">See what needed for your vocals</div>
-          <div class="user-friendly-description">Look for the effects and plugins required for your vibe</div>
+          <div class="user-friendly-heading"> Effect and Plugin Overview</div>
+          <div class="user-friendly-description">Find out what effects shape your sound.</div>
         </div>
         </div>
 
@@ -131,8 +131,8 @@ const Intro = () => {
             <img src="ring.svg" alt="Metallic ring visualization" class="visual-image"/>
           </div>
           <div class="text-container">
-            <div class="heading">Update your chains</div>
-            <div class="description">If not satisfied, all chains are adjustable.</div>
+            <div class="heading">Edit Your Chains</div>
+            <div class="description">Not happy? Adjust everything easily.</div>
           </div>
         </div> 
 
@@ -149,8 +149,8 @@ const Intro = () => {
         <div class="gradient-overlay"></div>
 
         <div class="user-friendly-text">
-          <div class="user-friendly-heading">Update chains via Saucy AI chatbot</div>
-          <div class="user-friendly-description">Saucy AI can understand basic terms to achieve your desired sound</div>
+          <div class="user-friendly-heading">Chat with Saucy AI</div>
+          <div class="user-friendly-description">Type changes. Let Saucy AI update your chain.</div>
         </div>
         </div>
         </div>
