@@ -34,7 +34,7 @@ const Intro = () => {
             </h2>
 
             <button className="waitlist-btn" onClick={scrollToWaitlist}>
-              Join Waitlist!
+              Join waitlist!
             </button>
 
             <div className="dash-preview">
