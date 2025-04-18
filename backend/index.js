@@ -9,6 +9,9 @@ const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
 const { createClient } = require('@supabase/supabase-js');
 const value = process.env.SUPABASE_SERVICE_KEY;
+const Stripe = require('stripe');
+const stripeKey = process.env.STRIPE_SECRET_KEY;
+const stripe = Stripe('senin_secret_keyin'); 
 
 const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', value);
 app.use(cors({
@@ -18,6 +21,33 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '100mb' })); 
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
+
+
+
+app.post('/create-subscription-session', async (req, res) => {
+  const { priceId } = req.body;
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'subscription',
+      line_items: [
+        {
+          price: priceId,
+          quantity: 1,
+        },
+      ],
+      success_url: 'http://localhost:3000/success', // Başarılı ödeme sonrası yönlendirme
+      cancel_url: 'http://localhost:3000/cancel', // İptal durumunda yönlendirme
+    });
+
+    res.json({ url: session.url });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 const getVocalChainDetails = async (vocalChainName) => {
   try {

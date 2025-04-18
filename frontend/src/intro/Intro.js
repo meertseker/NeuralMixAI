@@ -5,6 +5,7 @@ import FlSection from "./components/FlSection"
 import WaitlistCTA from './components/Waitlist';
 import { useEffect, useRef } from 'react';
 
+import Subscriptions from './components/Subscriptions';
 const Intro = () => {
   const navigate = useNavigate();
 
@@ -166,11 +167,12 @@ const Intro = () => {
           </section>
           <div className="purple-glow"></div>
           <section className='waitlist section' ref={waitlistRef}>
-            
+          <Subscriptions/>  
           <WaitlistCTA />
           </section>
           
           <section className='footer section'>
+           
             Contact: support@saucyai.co
             <p>For employment: hire@saucyai.co</p>
           </section>
