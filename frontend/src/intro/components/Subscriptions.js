@@ -43,7 +43,7 @@ const Subscriptions = () => {
         <div className="pricing-header">
           <h2 className="pricing-title">Pricing</h2>
           <p className="pricing-subtitle">
-            Choose the right plan to start releasing today. There is a 50% OFF on duo sales!
+          Mix Like a Pro for Less Than a Coffee
           </p>
         </div>
 

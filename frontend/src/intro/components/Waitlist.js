@@ -52,7 +52,7 @@ const WaitlistCTA = () => {
 
         <div className="border-container"></div>
         
-        <h2 className="cta-heading">AI-driven Mix<br />for everyone.</h2>
+        <h2 className="cta-heading">Try all features free for <br />7 days.</h2>
         
         <div className="form-container">
           <div className="email-form">

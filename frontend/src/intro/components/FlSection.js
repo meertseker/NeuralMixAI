@@ -5,8 +5,8 @@ import './FlSection.css'; // You'll need to create this CSS file
 const FlSection = () => {
   return (
     <section className='pitcure-text section clients-section'>
-      <h2 className="headingfl">Use Chains instantly in your DAW</h2>
-      <p className="subheading">Saucy AI provides mixer preset files for Ableton, Fl Studio and Logic Pro</p>
+      <h2 className="headingfl">Plug & Play Presets</h2>
+      <p className="subheading">FL Studio, Ableton, Logic Pro – ready-to-use mixer states in 1 download.</p>
       
       <div className="testimonial-container">
         {/* Grid lines */}
@@ -22,8 +22,8 @@ const FlSection = () => {
         
         {/* Testimonial */}
         <div className="testimonial-content">
-          <p className="quote">Just download the preset file, and drop it into your desired DAW</p>
-          <p className="author">Your chain is ready to use instantly!</p>
+          <p className="quote">Just drop the preset file.</p>
+          <p className="author">And your chain is ready to use!</p>
         </div>
         
         {/* Purple glow effect */}
