@@ -15,9 +15,9 @@ const stripeKey = process.env.STRIPE_SECRET_KEY;
 
 const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', value);
 app.use(cors({
-  origin: 'https://saucyai.co', 
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: ['https://www.saucyai.co', 'https://saucyai.co'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST']
 }));
 app.use(express.json({ limit: '100mb' })); 
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
