@@ -20,7 +20,7 @@ const WaitlistCTA = () => {
       setIsSubmitting(true);
       setSubmitStatus('Submitting...');
       
-      const response = await fetch('https://13.53.201.77:5000/savewaitlist', {
+      const response = await fetch('https://saucyai-loadbalancer-1898702891.eu-north-1.elb.amazonaws.com/savewaitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

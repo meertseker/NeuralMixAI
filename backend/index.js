@@ -11,11 +11,11 @@ const { createClient } = require('@supabase/supabase-js');
 const value = process.env.SUPABASE_SERVICE_KEY;
 const Stripe = require('stripe');
 const stripeKey = process.env.STRIPE_SECRET_KEY;
-const stripe = Stripe('senin_secret_keyin'); 
+
 
 const supabase = createClient('https://xaujzzzeekizeaftwwlk.supabase.co', value);
 app.use(cors({
-  origin: 'http://saucyai.co', 
+  origin: 'https://saucyai.co', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
