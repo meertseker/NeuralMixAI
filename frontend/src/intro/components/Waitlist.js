@@ -20,7 +20,7 @@ const WaitlistCTA = () => {
       setIsSubmitting(true);
       setSubmitStatus('Submitting...');
       
-      const response = await fetch('http://localhost:5000/savewaitlist', {
+      const response = await fetch('http://13.53.201.77/savewaitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
