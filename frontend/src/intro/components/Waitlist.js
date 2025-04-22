@@ -20,7 +20,7 @@ const WaitlistCTA = () => {
       setIsSubmitting(true);
       setSubmitStatus('Submitting...');
       
-      const response = await fetch('http://13.53.201.77:5000/savewaitlist', {
+      const response = await fetch('https://13.53.201.77:5000/savewaitlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const WaitlistCTA = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.json(); 
         setSubmitStatus('Success! You\'ve been added to our waitlist.');
         setEmail(''); // Clear input field after successful submission
       } else {
