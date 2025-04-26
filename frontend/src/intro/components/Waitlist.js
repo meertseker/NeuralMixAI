@@ -20,7 +20,7 @@ const WaitlistCTA = () => {
       setIsSubmitting(true);
       setSubmitStatus('Submitting...');
       const waitlistApiUrl = process.env.REACT_APP_WAITLIST_API;
-    const response = await fetch(waitlistApiUrl, {
+    const response = await fetch("https://api.saucyai.co/savewaitlist", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
