@@ -7,7 +7,7 @@ const WaitlistCTA = () => {
   
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const waitlistSubmit = async () => {
     // Input validation
