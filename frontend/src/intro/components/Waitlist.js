@@ -4,7 +4,7 @@ import './Waitlist.css';
 import  { useState } from 'react';
 
 const WaitlistCTA = () => {
-
+  
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -19,8 +19,8 @@ const WaitlistCTA = () => {
     try {
       setIsSubmitting(true);
       setSubmitStatus('Submitting...');
-      
-      const response = await fetch(process.env.WAITLIST-API, {
+      const waitlistApiUrl = await fetch(process.env.WAITLIST-API)
+      const response = await fetch(waitlistApiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
